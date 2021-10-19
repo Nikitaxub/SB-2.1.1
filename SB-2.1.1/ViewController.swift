@@ -47,14 +47,11 @@ class ViewController: UIViewController {
         switch candidateToTurnOn {
         case 1:
             redCircleView.alpha = 1
-            yellowCircleView.alpha = 0.3
             greenCircleView.alpha = 0.3
         case 2:
             redCircleView.alpha = 0.3
             yellowCircleView.alpha = 1
-            greenCircleView.alpha = 0.3
         default:
-            redCircleView.alpha = 0.3
             yellowCircleView.alpha = 0.3
             greenCircleView.alpha = 1
         }
