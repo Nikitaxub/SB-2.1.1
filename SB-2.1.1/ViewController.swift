@@ -13,25 +13,53 @@ class ViewController: UIViewController {
     @IBOutlet var yellowCircleView: UIView!
     @IBOutlet var greenCircleView: UIView!
     @IBOutlet var startButton: UIButton!
-   
+    
+    var candidateToTurnOn : Int = 0 {
+        didSet {
+            if candidateToTurnOn == 4 {
+                candidateToTurnOn = 1
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        redCircleView.layer.cornerRadius = redCircleView.frame.width / 2
-        redCircleView.alpha = 0.3
-        yellowCircleView.layer.cornerRadius = yellowCircleView.frame.width / 2
-        yellowCircleView.alpha = 0.3
-        greenCircleView.layer.cornerRadius = greenCircleView.frame.width / 2
-        greenCircleView.alpha = 0.3
-        
+        if candidateToTurnOn == 0 {
+            redCircleView.layer.cornerRadius = redCircleView.frame.width / 2
+            redCircleView.alpha = 0.3
+            yellowCircleView.layer.cornerRadius = yellowCircleView.frame.width / 2
+            yellowCircleView.alpha = 0.3
+            greenCircleView.layer.cornerRadius = greenCircleView.frame.width / 2
+            greenCircleView.alpha = 0.3
+            candidateToTurnOn += 1
+        }
         startButton.layer.cornerRadius = 10
-        print(greenCircleView.frame.width, greenCircleView.frame.height)
     }
 
-    @IBAction func startAction(_ sender: Any) {
+    
+    @IBAction func startAction(_ sender: UIButton) {
+        startButton.setTitle("Next", for: .normal)
+        
+        switch candidateToTurnOn {
+        case 1:
+            redCircleView.alpha = 1
+            yellowCircleView.alpha = 0.3
+            greenCircleView.alpha = 0.3
+        case 2:
+            redCircleView.alpha = 0.3
+            yellowCircleView.alpha = 1
+            greenCircleView.alpha = 0.3
+        default:
+            redCircleView.alpha = 0.3
+            yellowCircleView.alpha = 0.3
+            greenCircleView.alpha = 1
+        }
+        candidateToTurnOn += 1
     }
+
 }
 
